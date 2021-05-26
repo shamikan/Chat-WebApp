@@ -2,11 +2,14 @@ const express=require('express')
 const path=require('path')
 const socketio=require('socket.io')
 const http=require('http')
+const foundMessage=require('./utils/messages')
+const formatMessages = require('./utils/messages')
 
 const app=express()
 
 //\create port
 const PORT=4000 
+const botName='ChatCord Bot'
 
 
 //create server
@@ -26,22 +29,22 @@ io.on('connection', socket=>{
     console.log(`New WebSocket established w/ id ${socket.id}`);
 
     //connection message only to client
-    socket.emit('message', "Welcome to Chat-Okay" )
+    socket.emit('message', formatMessages(botName,"Welcome to Chat-Okay") )
 
     //send message to all other clients except the sender
-    socket.broadcast.emit('message', "A user has entered the chat.")
+    socket.broadcast.emit('message', formatMessages(botName,"A user has entered the chat."))
     
     
     
     //listen chatmsg
     socket.on('chatMsg', (msg)=>{
         //console.log(msg);
-        io.emit('message',msg)
+        io.emit('message',formatMessages('user',msg))
     })
 
     //disconnection
     socket.on('disconnect', ()=>{
-        io.emit('message', "A user a left the chat")
+        io.emit('message', formatMessages(botName,"A user a left the chat"))
     })
     
 })

@@ -17,7 +17,7 @@ socket.on('message', msg=>{
     outputMsg(msg);
 
     //auto scroll to bottom
-    chatmsg.scrollTop=chatmsg.scrollHeight;
+    //chatmsg.scrollTop=chatmsg.scrollHeight;
 })
 
 //trigger event for getting message text and send it to server
@@ -37,8 +37,8 @@ chatForm.addEventListener('submit', e=>{
 function outputMsg(msg){
     const div=document.createElement('div')
     div.classList.add('message')
-    div.innerHTML=`<p> XYZ<span> ${msg.time} </span></p>
-    <p>${msg}</p>`
+    div.innerHTML=`<p> <span> [${msg.time}] </span>${msg.username}:</p>
+    <p>${msg.text}</p>`
     document.querySelector('.chat-messages').appendChild(div)
 }
 
