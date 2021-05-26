@@ -1,0 +1,17 @@
+.col-6 {
+    background-color:darkgrey;
+    text-align: center;
+    height: 300px;
+    margin-top: 50px
+}
+
+#join {
+    margin-top: 8px;
+}
+h1{
+    margin-top: 20px;
+    /* font-family: cursive */
+}
+.form-1{
+    margin-top: 20px
+}
